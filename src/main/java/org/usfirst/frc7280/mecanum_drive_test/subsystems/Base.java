@@ -37,10 +37,8 @@ public class Base extends Subsystem {
 
     RobotMap robotMap = new RobotMap();
 
-    double frontLeftSpeed;
-    double rearLeftSpeed;
-    double frontRightSpeed;
-    double rearRighttSpeed;
+    double leftSpeed;
+    double rightSpeed;
 
     int targetDistanceX;
     int targetDistanceY;
@@ -59,6 +57,9 @@ public class Base extends Subsystem {
 
         configVelocityPID();
 
+        leftFrontMotor.follow(leftRearMotor);
+        rightFrontMotor.follow(rightRearMotor);
+
     }
 
     @Override
@@ -73,20 +74,27 @@ public class Base extends Subsystem {
 
     }
 
-    public void drive(double yValue, double xValue, double zValue){
+    public void drive(double twistValue, double throttleValue, double xValue){
         motorMode(NeutralMode.Coast);
         configVelocityPID();
 
         if (Robot.elevator.targetPosition > -10000){
-            frontLeftSpeed = (yValue - xValue / 1.3) * 1500 * 2;
-            rearLeftSpeed = (yValue - xValue / 1.3) * 1500 * 2;
-            frontRightSpeed = (yValue + xValue / 1.3) * 1500 * 2;
-            rearRighttSpeed = (yValue + xValue / 1.3) * 1500 * 2;
+            if (twistValue - throttleValue <= 0){
+                leftSpeed = (twistValue - throttleValue - xValue) * Constants.kBaseSpeed;
+                rightSpeed = (twistValue - throttleValue + xValue) * Constants.kBaseSpeed;
+            } else {
+                leftSpeed = (twistValue - throttleValue + xValue) * Constants.kBaseSpeed;
+                rightSpeed = (twistValue - throttleValue - xValue) * Constants.kBaseSpeed;
+            }
         } else {
-            frontLeftSpeed = (yValue - xValue / 1.3) * 750 * 2;
-            rearLeftSpeed = (yValue - xValue / 1.3) * 750 * 2;
-            frontRightSpeed = (yValue + xValue / 1.3) * 750 * 2;
-            rearRighttSpeed = (yValue + xValue / 1.3) * 750 * 2;
+
+            if (twistValue - throttleValue <= 0){
+                leftSpeed = (twistValue - throttleValue - xValue) * Constants.kBaseSpeed / 2;
+                rightSpeed = (twistValue - throttleValue + xValue) * Constants.kBaseSpeed / 2;
+            } else {
+                leftSpeed = (twistValue - throttleValue + xValue) * Constants.kBaseSpeed / 2;
+                rightSpeed = (twistValue - throttleValue - xValue) * Constants.kBaseSpeed / 2;
+            }
         }
         
         speedDrive();
@@ -96,7 +104,7 @@ public class Base extends Subsystem {
         SmartDashboard.putNumber("RF position", rightFrontMotor.getSelectedSensorPosition());
         SmartDashboard.putNumber("RR position", rightRearMotor.getSelectedSensorPosition());
         
-        SmartDashboard.putNumber("set base speed", frontLeftSpeed);
+        SmartDashboard.putNumber("set base speed", leftSpeed);
         SmartDashboard.putNumber("base speed", leftFrontMotor.getSelectedSensorVelocity());
         SmartDashboard.putNumber("output", leftFrontMotor.getMotorOutputPercent());
     }
@@ -179,10 +187,8 @@ public class Base extends Subsystem {
     }
 
     public void speedDrive(){
-        leftFrontMotor.set(ControlMode.Velocity, frontLeftSpeed);
-        leftRearMotor.set(ControlMode.Velocity, rearLeftSpeed);
-        rightFrontMotor.set(ControlMode.Velocity, frontRightSpeed);
-        rightRearMotor.set(ControlMode.Velocity, rearRighttSpeed);
+        leftFrontMotor.set(ControlMode.Velocity, leftSpeed);
+        rightFrontMotor.set(ControlMode.Velocity, rightSpeed);
     }
 
     public void moveY(int _distance){
@@ -190,9 +196,7 @@ public class Base extends Subsystem {
         motorMode(NeutralMode.Brake);
 
         leftFrontMotor.set(ControlMode.Position, _distance);
-        leftRearMotor.set(ControlMode.Position, _distance);
         rightFrontMotor.set(ControlMode.Position, _distance);
-        rightRearMotor.set(ControlMode.Position, _distance);
     }
 
     public void TurnLeft(int _distance){
@@ -200,9 +204,7 @@ public class Base extends Subsystem {
         motorMode(NeutralMode.Brake);
 
         leftFrontMotor.set(ControlMode.Position, _distance);
-        leftRearMotor.set(ControlMode.Position, _distance);
         rightFrontMotor.set(ControlMode.Position, _distance);
-        rightRearMotor.set(ControlMode.Position, _distance);
     }
 
     public void TurnRight(int _distance){
@@ -210,9 +212,7 @@ public class Base extends Subsystem {
         motorMode(NeutralMode.Brake);
 
         leftFrontMotor.set(ControlMode.Position, _distance);
-        leftRearMotor.set(ControlMode.Position, _distance);
         rightFrontMotor.set(ControlMode.Position, _distance);
-        rightRearMotor.set(ControlMode.Position, _distance);
     }
 
     // turn the robot, 363unit/degree
@@ -232,9 +232,7 @@ public class Base extends Subsystem {
 
     public void percentageDrive(double _leftSpeed, double _rightSpeed){
         leftFrontMotor.set(ControlMode.PercentOutput, _leftSpeed);
-        leftRearMotor.set(ControlMode.PercentOutput, _leftSpeed);
         rightFrontMotor.set(ControlMode.PercentOutput, _rightSpeed);
-        rightRearMotor.set(ControlMode.PercentOutput, _rightSpeed);
 
     }
 

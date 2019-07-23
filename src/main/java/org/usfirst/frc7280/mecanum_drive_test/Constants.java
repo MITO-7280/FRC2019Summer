@@ -23,7 +23,8 @@ public class Constants {
 
 
     // Base speed 
-    
+    public static final int kBaseSpeed = 2000;
+
     // Elevator PID values 
     public static final double kElevatorP = 0.04;
     public static final double kElevatorI = 0.0;

@@ -114,7 +114,7 @@ public class Base extends Subsystem {
         double zSpeed = 0;
         switch (Robot.netWorkTable.upTape){
             case 0: // can't find tape
-                zSpeed = Robot.oi.motionStick.getZ();
+                zSpeed = Robot.oi.motionStick.getX();
                 visionTurnOK = false;
                 break;
 
@@ -139,12 +139,13 @@ public class Base extends Subsystem {
         return zSpeed;
     }
 
+    /*
     public double[] visionDrive() {
         tableOn = true;
         double[] yxSpeed = {0,0};
         switch (Robot.netWorkTable.downTape) {
             case 0: // can't find tape
-                yxSpeed[0] = Robot.oi.motionStick.getY();
+                yxSpeed[0] = Robot.oi.motionStick.getTwist() - Robot.oi.motionStick.getThrottle();
                 yxSpeed[1] = Robot.oi.motionStick.getX();
                 visionDriveOK = false;
                 break;
@@ -172,6 +173,7 @@ public class Base extends Subsystem {
 
         return yxSpeed;
     }
+    */
 
     public void speed(double yValue, double xValue, double zValue){
         tableOn = false;
@@ -285,5 +287,6 @@ public class Base extends Subsystem {
         rightRearMotor.configClosedLoopPeakOutput(0, 0.5);
     }
 
+    
 }
 

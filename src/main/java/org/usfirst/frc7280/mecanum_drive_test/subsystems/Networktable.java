@@ -26,6 +26,8 @@ public class Networktable extends Subsystem {
   NetworkTableEntry ballPositioneEntry = ball.getEntry("Y");
   NetworkTableEntry upTapeEntry = put.getEntry("Y");
   NetworkTableEntry downTapeEntry = put.getEntry("X");
+  NetworkTableEntry distanceEntry = put.getEntry("distance");
+  NetworkTableEntry angleEntry = put.getEntry("angle");
 
   // modify needed check the networktale entry nuner
 
@@ -36,6 +38,8 @@ public class Networktable extends Subsystem {
   public int ballPosition;
   public int upTape;
   public int downTape;
+  public int distance;
+  public int angle;
   double x = 0;
 
   public Networktable(){
@@ -54,6 +58,8 @@ public class Networktable extends Subsystem {
     ballPosition = (int) ballPositioneEntry.getDouble(5.0);
     upTape = (int) upTapeEntry.getDouble(5.0);
     downTape = (int) downTapeEntry.getDouble(5.0);
+    distance = (int) distanceEntry.getDouble(0);
+    angle = (int) angleEntry.getDouble(0);
 
     isNeeded.setDouble(x);
     if (Robot.base.tableOn) {

@@ -131,8 +131,8 @@ public class OI {
 
         // motion stick 
         // manually grab and shoot the ball, config button
-        shoot = new JoystickButton(motionStick, 7);
-        grab = new JoystickButton(motionStick, 8);
+        shoot = new JoystickButton(motionStick, 5);
+        grab = new JoystickButton(motionStick, 6);
 
         shoot.whileHeld(new Take());
         grab.whileHeld(new Grab());
@@ -151,7 +151,7 @@ public class OI {
         // putPlate.whenPressed(new PutPlate());
 
         // auto Ball
-        grabBall = new JoystickButton(motionStick, 5);
+        grabBall = new JoystickButton(motionStick, 3);
         // putBall = new JoystickButton(motionStick, 2);
 
         grabBall.whenPressed(new GrabBall());

@@ -32,6 +32,7 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        /*
         if (Robot.oi.motionStick.getRawButton(5)){
             switch (Robot.netWorkTable.ballPosition) {
                 case 0: // can't find ball
@@ -57,6 +58,8 @@ public class Drive extends Command {
         } else {
             Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
         }
+        */
+        Robot.base.drive(Robot.oi.motionStick.getTwist(), Robot.oi.motionStick.getThrottle(), Robot.oi.motionStick.getX());
     }
 
     // Make this return true when this Command no longer needs to run execute()

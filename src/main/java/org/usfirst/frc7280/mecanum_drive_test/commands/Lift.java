@@ -61,7 +61,7 @@ public class Lift extends Command {
         Robot.base.drive(0, 0, 0); // added
         finished = true;
       } else {
-        Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
+        Robot.base.speed(Robot.oi.motionStick.getTwist(), Robot.oi.motionStick.getThrottle(), Robot.base.visionTurn());
         Robot.base.speedDrive();
       }
     }

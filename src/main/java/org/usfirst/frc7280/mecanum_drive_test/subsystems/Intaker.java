@@ -30,13 +30,21 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class Intaker extends Subsystem {
 
-    private VictorSPX intakerMotor = new VictorSPX(RobotMap.intakerMotor);
+    private VictorSPX intakerMotor = new VictorSPX(RobotMap.intakerLowerMotor);
+    private VictorSPX intakerUpperMotor = new VictorSPX(RobotMap.intakerUpperMotor);
 
     Solenoid intakerSolenoid = new Solenoid(RobotMap.intakerSolenoid);
+    Solenoid armSolenoid = new Solenoid(RobotMap.armSolenoid);
 
 
     public Intaker() {
         intakerMotor.setNeutralMode(NeutralMode.Brake);
+        intakerUpperMotor.setNeutralMode(NeutralMode.Brake);
+
+        intakerUpperMotor.follow(intakerMotor);
+
+        intakerUpperMotor.setInverted(true);
+        
         
     }
 
@@ -66,6 +74,14 @@ public class Intaker extends Subsystem {
 
     public void cylinderDown(){
         intakerSolenoid.set(false);
+    }
+
+    public void armSolenoidDown(){
+        armSolenoid.set(true);
+    }
+    
+    public void armSolenoidUp(){
+        armSolenoid.set(false);
     }
 }
 

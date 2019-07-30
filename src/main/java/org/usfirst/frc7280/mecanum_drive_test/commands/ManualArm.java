@@ -27,8 +27,9 @@ public class ManualArm extends Command {
   @Override
   protected void execute() {
     if(Robot.judge.manualModeOn && Robot.oi.functionStick.getRawButton(12)){
-    Robot.arm.ManualRun(Robot.oi.functionStick.getRawAxis(3)/2);
+    Robot.arm.ManualRun(Robot.oi.functionStick.getRawAxis(2)/2);
     }
+    
   } 
 
   // Make this return true when this Command no longer needs to run execute()

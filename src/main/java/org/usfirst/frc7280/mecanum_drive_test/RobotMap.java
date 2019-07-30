@@ -6,27 +6,29 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class RobotMap {
 
     // base motor
-    public static final int leftFrontMotor = 3;
-    public static final int leftRearMotor = 2;
-    public static final int rightFrontMotor = 4;
-    public static final int rightRearMotor = 1;
+    public static final int leftFrontMotor = 1;
+    public static final int leftRearMotor = 3;
+    public static final int rightFrontMotor = 2;
+    public static final int rightRearMotor = 4;
 
     // elevator motor
-    public static final int elevatorMasterMotor = 13;
-    public static final int elevatorSlaveMotor = 14;
+    public static final int elevatorMasterMotor = 6;
+    public static final int elevatorSlaveMotor = 5;
 
     // arm motor
-    public static final int armMotor = 7;
+    public static final int armMotor = 9;
 
     // intaker motor & solenoid
-    public static final int intakerMotor = 8;
-    public static final int intakerSolenoid = 0;
+    public static final int intakerUpperMotor = 8;
+    public static final int intakerLowerMotor = 7;
+    public static final int intakerSolenoid = 1;
+    public static final int armSolenoid = 0;
 
     // climb motor
-    public static final int backClimbMotor = 9;
+    public static final int backClimbMotor = 12;
     public static final int frontMasterMotor = 10;
     public static final int frontSlaveMotor = 11;
-    public static final int climbMotionMotor = 12;
+    public static final int climbMotionMotor = 13;
 
 
     public RobotMap(){

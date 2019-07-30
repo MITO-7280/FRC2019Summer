@@ -28,6 +28,8 @@ public class Judging extends Command {
   protected void execute() {
     Robot.judge.setManualMode();
     Robot.judge.detecting();
+    Robot.judge.climbStageJudge();
+    Robot.judge.highSpeedDrive();
   }
 
   // Make this return true when this Command no longer needs to run execute()

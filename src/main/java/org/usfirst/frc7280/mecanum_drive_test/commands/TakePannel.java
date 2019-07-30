@@ -17,9 +17,9 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 /**
  *
  */
-public class Grab extends Command {
+public class TakePannel extends Command {
 
-    public Grab() {
+    public TakePannel() {
     }
 
     // Called just before this Command runs the first time
@@ -31,7 +31,7 @@ public class Grab extends Command {
     @Override
     protected void execute() {
         Robot.intaker.armSolenoidUp();
-        Robot.intaker.cylinderUp();
+        Robot.intaker.cylinderDown();
         Robot.intaker.take(-0.3);
     }
 

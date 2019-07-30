@@ -45,7 +45,7 @@ public class Arm extends Subsystem {
     Constants.kArmD);
 
     armMotor.enableCurrentLimit(true);
-    armMotor.configContinuousCurrentLimit(9, Constants.kTimeoutMs);
+    armMotor.configContinuousCurrentLimit(Constants.kPeakCurrentLimit, Constants.kTimeoutMs);
     armMotor.configPeakCurrentLimit(Constants.kPeakCurrentLimit, Constants.kTimeoutMs);
     armMotor.configPeakCurrentDuration(Constants.kpeakCurrentDuration, Constants.kTimeoutMs);
 
@@ -64,25 +64,37 @@ public class Arm extends Subsystem {
     armSpeed = armMotor.getSelectedSensorVelocity();
     
     SmartDashboard.putNumber("arm position", armPosition);
+    SmartDashboard.putNumber("arm current", armMotor.getOutputCurrent());
+    SmartDashboard.putNumber("arm target", Constants.kLift);
+    SmartDashboard.putNumber("arm distance", Math.abs(Robot.arm.armPosition - Constants.kLift));
   }
 
   public void down(){
-    armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 0.2, Constants.kTimeoutMs);
+    armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 0.45, Constants.kTimeoutMs);
     armMotor.set(ControlMode.Position, Constants.kDown);
     armPosition = armMotor.getSelectedSensorPosition();
     armSpeed = armMotor.getSelectedSensorVelocity();
 
     SmartDashboard.putNumber("arm position", armPosition);
+    SmartDashboard.putNumber("arm current", armMotor.getOutputCurrent());
+    SmartDashboard.putNumber("arm target", Constants.kDown);
 
   }
 
   // manual control method for arms, control it with right stick
   public void ManualRun(double _outPut){
     armMotor.set(ControlMode.PercentOutput, _outPut);
+    armPosition = armMotor.getSelectedSensorPosition();
+    SmartDashboard.putNumber("arm position", armPosition);
+    SmartDashboard.putNumber("arm current", armMotor.getOutputCurrent());
   }
   public void stop(){
     armMotor.set(ControlMode.PercentOutput,0);
 
+  }
+
+  public void armTest(){
+    armMotor.set(ControlMode.PercentOutput, -0.8);
   }
 
 }

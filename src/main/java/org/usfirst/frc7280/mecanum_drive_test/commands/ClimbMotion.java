@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ClimbMotion extends Command {
 
+  private boolean finished;
   public ClimbMotion() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -29,15 +30,19 @@ public class ClimbMotion extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    finished = true;
+    if (Robot.oi.climbStick.getPOV() == 0){
+      finished = false;
+    }
     Robot.climb.climbMotion();
-    Robot.base.drive(-0.2, 0, 0);
+    Robot.base.drive(0, 0.2, 0);
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true

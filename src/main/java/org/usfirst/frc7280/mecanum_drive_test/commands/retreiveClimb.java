@@ -12,6 +12,8 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class retreiveClimb extends Command {
+
+  private boolean finished;
   public retreiveClimb() {
     requires(Robot.climb);
   }
@@ -24,7 +26,11 @@ public class retreiveClimb extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.oi.motionStick.getRawButton(3)) {
+    finished = false;
+    if (Robot.oi.climbStick.getPOV() == 0){
+      finished = true;
+    }
+    if (Robot.oi.climbStick.getRawButton(3)) {
       Robot.climb.retrieveFront();
       Robot.climb.retrieveBack();
     }
@@ -34,7 +40,7 @@ public class retreiveClimb extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true

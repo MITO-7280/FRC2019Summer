@@ -24,7 +24,7 @@ public class visionMotion extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.base.speed(Robot.oi.motionStick.getTwist(), Robot.oi.motionStick.getThrottle(), Robot.base.visionTurn());
+    Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
     Robot.base.speedDrive();
   }
 

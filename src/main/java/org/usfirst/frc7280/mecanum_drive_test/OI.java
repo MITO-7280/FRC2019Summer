@@ -55,6 +55,7 @@ public class OI {
 
     public Joystick functionStick;
     public Joystick motionStick;
+    public Joystick climbStick;
     
     public JoystickButton shoot;
     public JoystickButton grab;
@@ -83,6 +84,15 @@ public class OI {
     // modify, turn 180
     public JoystickButton turnleft90;
     public JoystickButton turnright90;
+
+    public JoystickButton climbTest;
+
+    public JoystickButton takePannel;
+
+    public JoystickButton climbMove;
+    public JoystickButton climbFrontBack;
+
+    public JoystickButton shootPannel;
     
     public OI() {
     
@@ -92,6 +102,7 @@ public class OI {
         // config joystck port
         functionStick = new Joystick(1);
         motionStick = new Joystick(0);
+        climbStick = new Joystick(2);
 
         // function stick
         // Config elevator button
@@ -121,21 +132,25 @@ public class OI {
         // armChange.toggleWhenPressed(new ArmDown());
 
         // manual solenoid
-        solenoidActivate = new JoystickButton(functionStick, 9);
-        solenoidActivate.toggleWhenPressed(new SolenoidActivate());
+        solenoidActivate = new JoystickButton(motionStick, 9);
+        solenoidActivate.toggleWhenPressed(new SolenoidIn());
         // move to default command 
 
-        elevatorDown = new JoystickButton(functionStick, 10);
-        elevatorDown.whenPressed(new ElevatorDown());
+        elevatorDown = new JoystickButton(motionStick, 10);
+        elevatorDown.whenPressed(new SolenoidOut());
 
 
         // motion stick 
         // manually grab and shoot the ball, config button
         shoot = new JoystickButton(motionStick, 5);
         grab = new JoystickButton(motionStick, 6);
+        takePannel = new JoystickButton(motionStick, 7);
+        shootPannel = new JoystickButton(motionStick, 8);
 
         shoot.whileHeld(new Take());
         grab.whileHeld(new Grab());
+        takePannel.whileHeld(new TakePannel());
+        shootPannel.whileHeld(new ShootPannel());
 
         turnleft90 = new JoystickButton(motionStick, 1);
         turnleft90.whenPressed(new TurnLeft(Constants.leftTurn90));
@@ -156,6 +171,15 @@ public class OI {
 
         grabBall.whenPressed(new GrabBall());
         // putBall.whenPressed(new PutBall());
+
+
+
+        climbMove = new JoystickButton(climbStick, 1);
+        climbFrontBack = new JoystickButton(climbStick, 2);
+        climbMove.whileHeld(new ClimbMotion());
+        climbFrontBack.whileHeld(new ClimbFront());
+
+        
 
         // virtual button 
         SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.kClimbSecondLevel));

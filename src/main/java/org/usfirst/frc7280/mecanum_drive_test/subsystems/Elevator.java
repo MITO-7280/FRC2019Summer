@@ -48,8 +48,8 @@ public class Elevator extends Subsystem {
 
     // set whether you need to invert the motor to get right value
     elevatorMaster.setInverted(Constants.kMotorInverted);
-    elevatorSlave.setInverted(false); // modified
-
+    elevatorSlave.setInverted(true); // modified
+ 
     robotMap.setMotorPID(
     elevatorMaster, 
     Constants.kElevatorF, 
@@ -61,7 +61,7 @@ public class Elevator extends Subsystem {
 
     // current limit 
     elevatorMaster.enableCurrentLimit(true);
-    elevatorMaster.configContinuousCurrentLimit(Constants.kContinueCurrentLimit, Constants.kTimeoutMs);
+    elevatorMaster.configContinuousCurrentLimit(15, Constants.kTimeoutMs);
     elevatorMaster.configPeakCurrentLimit(Constants.kPeakCurrentLimit, Constants.kTimeoutMs);
     elevatorMaster.configPeakCurrentDuration(Constants.kpeakCurrentDuration, Constants.kTimeoutMs);
 
@@ -117,6 +117,7 @@ public class Elevator extends Subsystem {
     SmartDashboard.putNumber("Target position", _position);
     SmartDashboard.putNumber("elevator output", elevatorMaster.getMotorOutputPercent());
     SmartDashboard.putNumber("elevator current", elevatorMaster.getOutputCurrent());
+    SmartDashboard.putNumber("elevator current", elevatorMaster.getOutputCurrent());
 
   }
 
@@ -136,6 +137,10 @@ public class Elevator extends Subsystem {
 
   public void manualRun(double _outPut){
     elevatorMaster.set(ControlMode.PercentOutput, _outPut);
+
+    SmartDashboard.putNumber("elevator position", elevatorMaster.getSelectedSensorPosition());
+    SmartDashboard.putNumber("elevator current", elevatorMaster.getOutputCurrent());
+    SmartDashboard.putNumber("elevator percent", elevatorMaster.getMotorOutputPercent());
 
   }
 

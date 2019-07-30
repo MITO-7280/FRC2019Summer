@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ClimbBack extends Command {
 
+  private boolean finished;
   public ClimbBack() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -29,13 +30,17 @@ public class ClimbBack extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    finished = false;
+    if (Robot.oi.climbStick.getPOV() == 0){
+      finished = true;
+    }
     Robot.climb.retrieveBack();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return finished;
   }
 
   // Called once after isFinished returns true

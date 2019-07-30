@@ -10,6 +10,7 @@ package org.usfirst.frc7280.mecanum_drive_test.commands;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ManualElevator extends Command {
   public ManualElevator() {
@@ -27,7 +28,7 @@ public class ManualElevator extends Command {
   @Override
   protected void execute() {
     if(Robot.judge.manualModeOn && Robot.oi.functionStick.getRawButton(11)){
-    Robot.elevator.manualRun(Robot.oi.functionStick.getY()/2);
+    Robot.elevator.manualRun(Robot.oi.functionStick.getY());
     }
   }
 

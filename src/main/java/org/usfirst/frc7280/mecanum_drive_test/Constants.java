@@ -10,7 +10,7 @@ public class Constants {
 
     public static boolean kSensorPhase = true;
 
-    public static boolean kMotorInverted = false;
+    public static boolean kMotorInverted = true;
 
     // Base PID
     public static final double kBasePeakOutput = 0.8;
@@ -23,7 +23,8 @@ public class Constants {
 
 
     // Base speed 
-    public static final int kBaseSpeed = 2000;
+    public static final int kBaseHighSpeed = 5000;
+    public static final int kBaseLowSpeed = 2000;
 
     // Elevator PID values 
     public static final double kElevatorP = 0.04;
@@ -37,26 +38,26 @@ public class Constants {
     public static final double kElevatorDownI = 0.0;
     public static final double kElevatorDownD = 0.0;
     public static final double kElevatorDownF = 0.0;
-    public static final double kElevatorDownPeakOutput = 0.25;
+    public static final double kElevatorDownPeakOutput = 0.4;
 
     // elevator go to highest point pid
     public static final double kElevatorHigherP = 0.5;
     public static final double kElevatorHigherI = 0.0;
     public static final double kElevatorHigherD = 0.03;
     public static final double kElevatorHigherF = 0.0;
-    public static final double kElevatorHigherPeakOutput = 0.5;
+    public static final double kElevatorHigherPeakOutput = 0.4;
 
     // Elevator height values
-    public static final int kZeroLevel = 0;
-    public static final int kFirstLevel = -13000;
-    public static final int kSecondLevel = -30000;
-    public static final int kThirdLevel = -60000;
-    public static final int kFourthLevel = -94000;
-    public static final int kFifthLevel = -110000;
+    public static final int kZeroLevel = 0; //zero arm down
+    public static final int kFirstLevel = -2350; //grab ball arm down 
+    public static final int kSecondLevel = -15000; 
+    public static final int kThirdLevel = 0;
+    public static final int kFourthLevel = 0;
+    public static final int kFifthLevel = 0;
 
     // Elevator current limit values
-    public static final int kContinueCurrentLimit = 18;
-    public static final int kPeakCurrentLimit = 21;
+    public static final int kContinueCurrentLimit = 28;
+    public static final int kPeakCurrentLimit = 30;
     public static final int kpeakCurrentDuration = 10;
 
 
@@ -69,19 +70,19 @@ public class Constants {
     public static final double kArmP = 0.09;
     public static final double kArmI = 0;
     public static final double kArmD = 0;
-    public static final double kArmF = 0.0;
-    public static final double kArmPeakOutput = 0.2;
+    public static final double kArmF = 0;
+    public static final double kArmPeakOutput = 1;
     
     // Arm lift values
-    public static final int kLift = -4000;
-    public static final int kDown = -34000;
+    public static final int kDown = -8000;
+    public static final int kLift = -50000;
 
 
     // climb PID values and height
-    public static final double kClimbPeakOutput = 0.6;
+    public static final double kClimbPeakOutput = 0.5;
     public static final double kClimbBackOutput = 0.9;
-    public static final int kClimbSecondLevel = 170000;
-    public static final int kClimbFirstLevel = 100000;
+    public static final int kClimbSecondLevel = 150000;
+    public static final int kClimbFirstLevel = 90000;
     public static final int kRetrieveLevel = 0;
     public static final int climbSpeed = 2000;
 }

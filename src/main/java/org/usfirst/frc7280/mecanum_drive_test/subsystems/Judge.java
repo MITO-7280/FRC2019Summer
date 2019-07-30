@@ -7,6 +7,7 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.subsystems;
 
+import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 import org.usfirst.frc7280.mecanum_drive_test.commands.Judging;
 
@@ -25,6 +26,9 @@ public class Judge extends Subsystem {
   public boolean atButtom = true;
   public int visionDistence = 1000;
   private DigitalInput elevatorSensor = new DigitalInput(1);
+  public int climbLevel;
+  public boolean climbOk;
+  public boolean highSpeedOn = true;
 
   @Override
   public void initDefaultCommand() {
@@ -45,4 +49,27 @@ public class Judge extends Subsystem {
     public void detecting(){
       atButtom = elevatorSensor.get();
     }
+
+  public void climbStageJudge(){
+    if (Robot.oi.climbStick.getRawButton(7)){
+      climbLevel = Constants.kClimbFirstLevel;
+      climbOk = true;
+    } else if(Robot.oi.climbStick.getRawButton(8)){
+      climbLevel = Constants.kClimbSecondLevel;
+      climbOk = true;
+    }
+
+    SmartDashboard.putBoolean("climbok", climbOk);
+  }
+
+  public void highSpeedDrive(){
+    if (Robot.oi.motionStick.getRawButton(12)){
+      highSpeedOn = false;
+    }
+    if(Robot.oi.motionStick.getRawButton(11)){
+      highSpeedOn = true;
+    }
+
+    SmartDashboard.putBoolean("high speed", highSpeedOn);
+  }
 }

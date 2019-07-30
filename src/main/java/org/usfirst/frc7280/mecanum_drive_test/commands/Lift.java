@@ -40,11 +40,11 @@ public class Lift extends Command {
   protected void execute() {
     finished = false;
 
-    if (targetPosition == Constants.kFirstLevel) {
-      Robot.arm.down();
-      Robot.intaker.cylinderUp(); // added
+    // if (targetPosition == Constants.kFirstLevel) {
+    //   Robot.arm.down();
+    //   Robot.intaker.cylinderUp(); // added
 
-    }
+    // }
 
     if (Robot.judge.manualModeOn) {
       Robot.elevator.liftToPosition(targetPosition);
@@ -57,11 +57,12 @@ public class Lift extends Command {
         // modified 
         if (targetPosition == Constants.kThirdLevel ||
         targetPosition == Constants.kFifthLevel)
-        Robot.intaker.cylinderDown();
+        // Robot.intaker.cylinderDown();
         Robot.base.drive(0, 0, 0); // added
         finished = true;
       } else {
-        Robot.base.speed(Robot.oi.motionStick.getTwist(), Robot.oi.motionStick.getThrottle(), Robot.base.visionTurn());
+        // Robot.elevator.liftToPosition(targetPosition);
+        // Robot.base.speed(Robot.oi.motionStick.getTwist(), Robot.oi.motionStick.getThrottle(), Robot.base.visionTurn());
         Robot.base.speedDrive();
       }
     }
@@ -70,7 +71,11 @@ public class Lift extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    if(Robot.oi.functionStick.getRawButton(11)){
+      return true;
+    } else {
     return finished;
+    }
   }
 
   // Called once after isFinished returns true

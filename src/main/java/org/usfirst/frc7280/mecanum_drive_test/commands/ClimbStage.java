@@ -37,8 +37,9 @@ public class ClimbStage extends Command {
     if (Robot.oi.climbStick.getPOV() == 0){
       finished = false;
     }
-    Robot.climb.climbStage(level);
-    Robot.climb.manualClimbMotion(-Robot.oi.climbStick.getRawAxis(1));
+    // Robot.climb.climbStage(level);
+    // Robot.climb.manualClimbMotion(-Robot.oi.climbStick.getRawAxis(1));
+    Robot.climb.climbMethod1(Robot.judge.climbLevel);
   }
 
   // Make this return true when this Command no longer needs to run execute()

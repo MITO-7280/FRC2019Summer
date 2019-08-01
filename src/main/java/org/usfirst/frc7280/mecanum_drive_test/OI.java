@@ -10,7 +10,6 @@
 
 package org.usfirst.frc7280.mecanum_drive_test;
 
-import org.usfirst.frc7280.mecanum_drive_test.command_group.*;
 import org.usfirst.frc7280.mecanum_drive_test.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -57,8 +56,8 @@ public class OI {
     public Joystick motionStick;
     public Joystick climbStick;
     
-    public JoystickButton shoot;
-    public JoystickButton grab;
+    public JoystickButton takeBall;
+    public JoystickButton shootball;
 
     // elevator level button
     public JoystickButton liftZero;
@@ -69,30 +68,26 @@ public class OI {
     public JoystickButton liftFourthLevel;
     public JoystickButton liftFifthLevel;
     public JoystickButton elevatorDown;
+    public JoystickButton liftSixthLevel;
+    public JoystickButton grabBallLevel;
     
     public JoystickButton solenoidActivate;
 
     public JoystickButton armLift;
     public JoystickButton armDown;
 
-    //auto button
-    public JoystickButton grabPlate;
-    public JoystickButton putPlate;
-    public JoystickButton grabBall;
-    public JoystickButton putBall;
-
-    // modify, turn 180
-    public JoystickButton turnleft90;
-    public JoystickButton turnright90;
-
-    public JoystickButton climbTest;
-
     public JoystickButton takePannel;
 
     public JoystickButton climbMove;
     public JoystickButton climbFrontBack;
+    public JoystickButton climbBothBack;
+    public JoystickButton climbUp;
 
     public JoystickButton shootPannel;
+
+    public JoystickButton vision;
+
+    public JoystickButton ClimbTest;
     
     public OI() {
     
@@ -113,15 +108,19 @@ public class OI {
         liftThirdLevel = new JoystickButton(functionStick, 4);
         liftFourthLevel = new JoystickButton(functionStick, 5);
         liftFifthLevel = new JoystickButton(functionStick, 6);
+        liftSixthLevel = new JoystickButton(functionStick, 9);
+        grabBallLevel = new JoystickButton (functionStick, 10);
 
         // asociate elevaor button to function 
         // liftZero.whenPressed(new LiftZero(Constants.kZeroLevel));
-        liftZeroLevel.whenPressed(new LiftZero(Constants.kZeroLevel));
+        liftZeroLevel.whenPressed(new Lift(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
         liftThirdLevel.whenPressed(new Lift(Constants.kThirdLevel));
         liftFourthLevel.whenPressed(new Lift(Constants.kFourthLevel));
         liftFifthLevel.whenPressed(new Lift(Constants.kFifthLevel));
+        liftSixthLevel.whenPressed(new Lift(Constants.kSixthLevel));
+        grabBallLevel.whenPressed(new Lift(Constants.kGrabBall));
 
 
         // manual move arm
@@ -129,34 +128,18 @@ public class OI {
          armLift = new JoystickButton(functionStick, 7);
          armLift.whenPressed(new ArmLift());
          armDown.whenPressed(new ArmDown());
-        // armChange.toggleWhenPressed(new ArmDown());
-
-        // manual solenoid
-        solenoidActivate = new JoystickButton(motionStick, 9);
-        solenoidActivate.toggleWhenPressed(new SolenoidIn());
-        // move to default command 
-
-        elevatorDown = new JoystickButton(motionStick, 10);
-        elevatorDown.whenPressed(new SolenoidOut());
-
 
         // motion stick 
         // manually grab and shoot the ball, config button
-        shoot = new JoystickButton(motionStick, 5);
-        grab = new JoystickButton(motionStick, 6);
+        takeBall = new JoystickButton(motionStick, 5);
+        shootball = new JoystickButton(motionStick, 6);
         takePannel = new JoystickButton(motionStick, 7);
         shootPannel = new JoystickButton(motionStick, 8);
 
-        shoot.whileHeld(new Take());
-        grab.whileHeld(new Grab());
+        takeBall.whileHeld(new TakeBall());
+        shootball.whileHeld(new ShootBall());
         takePannel.whileHeld(new TakePannel());
         shootPannel.whileHeld(new ShootPannel());
-
-        turnleft90 = new JoystickButton(motionStick, 1);
-        turnleft90.whenPressed(new TurnLeft(Constants.leftTurn90));
-
-        turnright90 = new JoystickButton(motionStick, 2);
-        turnright90.whenPressed(new TurnLeft(Constants.rightTurn90));
 
         // auto plate
         // grabPlate = new JoystickButton(motionStick, 3);
@@ -166,20 +149,27 @@ public class OI {
         // putPlate.whenPressed(new PutPlate());
 
         // auto Ball
-        grabBall = new JoystickButton(motionStick, 3);
-        // putBall = new JoystickButton(motionStick, 2);
+        //  = new JoystickButton(motionStick, 3);
+        // // putBall = new JoystickButton(motionStick, 2);
 
-        grabBall.whenPressed(new GrabBall());
+        // grabBall.whenPressed(new GrabBall());
         // putBall.whenPressed(new PutBall());
 
 
+        vision = new JoystickButton(motionStick, 4);
+        vision.whileHeld(new visionMotion());
+
+        // Climb Stick
 
         climbMove = new JoystickButton(climbStick, 1);
         climbFrontBack = new JoystickButton(climbStick, 2);
+        climbBothBack = new JoystickButton(climbStick, 4);
         climbMove.whileHeld(new ClimbMotion());
         climbFrontBack.whileHeld(new ClimbFront());
+        climbBothBack.whileHeld(new ClimbBack());
 
-        
+        ClimbTest = new JoystickButton(climbStick, 5);
+        ClimbTest.whileHeld(new ClimbStage(Constants.kClimbSecondLevel));
 
         // virtual button 
         SmartDashboard.putData("Climb Second Level", new ClimbStage(Constants.kClimbSecondLevel));

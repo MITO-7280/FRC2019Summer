@@ -38,7 +38,7 @@ public class Lift extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    finished = false;
+    // finished = false;
 
     // if (targetPosition == Constants.kFirstLevel) {
     //   Robot.arm.down();
@@ -46,26 +46,28 @@ public class Lift extends Command {
 
     // }
 
-    if (Robot.judge.manualModeOn) {
-      Robot.elevator.liftToPosition(targetPosition);
-      // Robot.arm.lift();
-      // Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
-    } else {
-      if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
-        Robot.elevator.liftToPosition(targetPosition);
+    // if (Robot.judge.manualModeOn) {
+    //   Robot.elevator.liftToPosition(targetPosition);
+    //   // Robot.arm.lift();
+    //   // Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+    // } else {
+    //   if (Robot.base.visionDriveOK && Robot.base.visionTurnOK) {
+    //     Robot.elevator.liftToPosition(targetPosition);
 
-        // modified 
-        if (targetPosition == Constants.kThirdLevel ||
-        targetPosition == Constants.kFifthLevel)
-        // Robot.intaker.cylinderDown();
-        Robot.base.drive(0, 0, 0); // added
-        finished = true;
-      } else {
-        // Robot.elevator.liftToPosition(targetPosition);
-        // Robot.base.speed(Robot.oi.motionStick.getTwist(), Robot.oi.motionStick.getThrottle(), Robot.base.visionTurn());
-        Robot.base.speedDrive();
-      }
-    }
+    //     // modified 
+    //     if (targetPosition == Constants.kThirdLevel ||
+    //     targetPosition == Constants.kFifthLevel)
+    //     // Robot.intaker.cylinderDown();
+    //     Robot.base.drive(0, 0, 0); // added
+    //     finished = true;
+    //   } else {
+    //     // Robot.elevator.liftToPosition(targetPosition);
+    //     // Robot.base.speed(Robot.oi.motionStick.getTwist(), Robot.oi.motionStick.getThrottle(), Robot.base.visionTurn());
+    //     Robot.base.speedDrive();
+    //   }
+    // }
+
+    Robot.elevator.liftToPosition(targetPosition);;
   }
 
   // Make this return true when this Command no longer needs to run execute()

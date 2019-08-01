@@ -11,8 +11,8 @@ import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Take extends Command {
-  public Take() {
+public class TakeBall extends Command {
+  public TakeBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.intaker);
@@ -28,7 +28,7 @@ public class Take extends Command {
   protected void execute() {
     Robot.intaker.cylinderUp();
     Robot.intaker.armSolenoidDown();
-    Robot.intaker.take(0.4);
+    Robot.intaker.take(0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,6 +42,7 @@ public class Take extends Command {
   protected void end() {
     Robot.intaker.take(0);
     Robot.intaker.armSolenoidUp();
+    Robot.intaker.cylinderDown();
   }
 
   // Called when another command which requires one or more of the same

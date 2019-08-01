@@ -10,6 +10,7 @@ package org.usfirst.frc7280.mecanum_drive_test.commands;
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ManualArm extends Command {
   public ManualArm() {
@@ -26,6 +27,7 @@ public class ManualArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    SmartDashboard.putNumber("arm Position", Robot.arm.armPosition);
     if(Robot.judge.manualModeOn && Robot.oi.functionStick.getRawButton(12)){
     Robot.arm.ManualRun(Robot.oi.functionStick.getRawAxis(2)/2);
     }

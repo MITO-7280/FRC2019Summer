@@ -11,6 +11,8 @@
 
 package org.usfirst.frc7280.mecanum_drive_test.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc7280.mecanum_drive_test.Robot;
 
 /**
@@ -32,26 +34,52 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (Robot.oi.motionStick.getRawButton(5)){
-            switch (Robot.netWorkTable.ballPosition) {
-                case 0: // can't find ball
-                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+        if (Robot.oi.motionStick.getRawButton(3)){
+            Robot.judge.highSpeedOn = false;
+            
+            switch (Robot.netWorkTable.upTape) {
+                case 999: // can't find tape
+                    // Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                    SmartDashboard.putNumber("test", 000);
                     break;
                     
-                case 1: // the ball is on the left4
-                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), -0.8);
+                case 1: // need to turn right
+                    // Robot.base.drive(0, 0, 0.8);
+                    SmartDashboard.putNumber("test", 111);
                     break;
                 
-                case 3: // the ball is in the center 
-                    Robot.base.drive(Robot.oi.motionStick.getY()-0.5, 0, 0);
+                case 0: // the angle is 0 
+                    switch (Robot.netWorkTable.midPoint){
+                        case -1://centre is on the left
+                        // Robot.base.drive(0, 0.5, 0);
+                        SmartDashboard.putNumber("test", 222);
+                        break;
+
+                        case 0: //mid piont is in the centre
+                        // Robot.base.drive(-0.5, 0, 0);
+                        SmartDashboard.putNumber("test", 000);
+                        break;
+
+                        case 1: //centre is on the right
+                        // Robot.base.drive(0, -0.5, 0);
+                        SmartDashboard.putNumber("test", 333);
+                        break;
+
+                        case 5: //default
+                        // Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                        SmartDashboard.putNumber("test", 000);
+                        break;
+                    }
                     break;
 
-                case 2: // the ball is on the right
-                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), 0.8);
+                case -1: // the need to turn left
+                    // Robot.base.drive(0, 0, -0.8);
+                    SmartDashboard.putNumber("test", 444);
                     break;
 
-                case 5:
-                    Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                case 5: //default
+                    // Robot.base.drive(Robot.oi.motionStick.getY(), Robot.oi.motionStick.getX(), Robot.oi.motionStick.getZ());
+                    SmartDashboard.putNumber("test", 000);
                     break;
             }
         } else {

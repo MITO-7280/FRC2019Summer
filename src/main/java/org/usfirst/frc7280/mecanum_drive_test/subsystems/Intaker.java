@@ -15,7 +15,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import org.usfirst.frc7280.mecanum_drive_test.Constants;
 import org.usfirst.frc7280.mecanum_drive_test.RobotMap;
-import org.usfirst.frc7280.mecanum_drive_test.commands.SolenoidActivate;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 

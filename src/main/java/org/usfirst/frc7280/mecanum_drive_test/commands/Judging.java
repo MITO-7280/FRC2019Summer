@@ -30,6 +30,7 @@ public class Judging extends Command {
     Robot.judge.detecting();
     Robot.judge.climbStageJudge();
     Robot.judge.highSpeedDrive();
+    Robot.judge.hasBall();
   }
 
   // Make this return true when this Command no longer needs to run execute()

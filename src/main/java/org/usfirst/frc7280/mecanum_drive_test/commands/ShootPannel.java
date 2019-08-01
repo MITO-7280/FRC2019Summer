@@ -29,7 +29,7 @@ public class ShootPannel extends Command {
   protected void execute() {
     Robot.intaker.armSolenoidUp();
     Robot.intaker.cylinderDown();
-    Robot.intaker.take(0.4);
+    Robot.intaker.take(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()

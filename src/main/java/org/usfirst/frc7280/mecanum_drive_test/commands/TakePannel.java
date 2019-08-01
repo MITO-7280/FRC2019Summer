@@ -32,7 +32,7 @@ public class TakePannel extends Command {
     protected void execute() {
         Robot.intaker.armSolenoidUp();
         Robot.intaker.cylinderDown();
-        Robot.intaker.take(-0.3);
+        Robot.intaker.take(-0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

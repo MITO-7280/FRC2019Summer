@@ -31,10 +31,8 @@ public class ClimbBack extends Command {
   @Override
   protected void execute() {
     finished = false;
-    if (Robot.oi.climbStick.getPOV() == 0){
-      finished = true;
-    }
     Robot.climb.retrieveBack();
+    Robot.base.drive(-0.2, 0, 0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

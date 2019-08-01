@@ -25,7 +25,7 @@ public class visionMotion extends Command {
   @Override
   protected void execute() {
     Robot.base.speed(Robot.base.visionDrive()[0], Robot.base.visionDrive()[1], Robot.base.visionTurn());
-    Robot.base.speedDrive();
+    // Robot.base.speedDrive();
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -24,10 +24,11 @@ public class Networktable extends Subsystem {
   NetworkTable put = inst.getTable("tape");
   NetworkTable ball = inst.getTable("ball");
   NetworkTableEntry ballPositioneEntry = ball.getEntry("Y");
-  NetworkTableEntry upTapeEntry = put.getEntry("Y");
+  NetworkTableEntry upTapeEntry = put.getEntry("Y"); //两个反光条的中点位置 之后
   NetworkTableEntry downTapeEntry = put.getEntry("X");
   NetworkTableEntry distanceEntry = put.getEntry("distance");
   NetworkTableEntry angleEntry = put.getEntry("angle");
+  NetworkTableEntry midEntry = put.getEntry("midpoint"); //判断是否平行于火箭
 
   // modify needed check the networktale entry nuner
 
@@ -40,6 +41,7 @@ public class Networktable extends Subsystem {
   public int downTape;
   public int distance;
   public int angle;
+  public int midPoint;
   double x = 0;
 
   public Networktable(){
@@ -60,6 +62,7 @@ public class Networktable extends Subsystem {
     downTape = (int) downTapeEntry.getDouble(5.0);
     distance = (int) distanceEntry.getDouble(0);
     angle = (int) angleEntry.getDouble(0);
+    midPoint = (int) midEntry.getDouble(5.0);
 
     isNeeded.setDouble(x);
     if (Robot.base.tableOn) {

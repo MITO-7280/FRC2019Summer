@@ -30,19 +30,15 @@ public class ClimbMotion extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    finished = true;
-    if (Robot.oi.climbStick.getPOV() == 0){
-      finished = false;
-    }
     Robot.climb.climbMotion();
-    Robot.base.drive(0, 0.2, 0);
+    Robot.base.drive(-0.2, 0, 0);
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return finished;
+    return false;
   }
 
   // Called once after isFinished returns true

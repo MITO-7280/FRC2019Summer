@@ -26,8 +26,8 @@ public class RobotMap {
 
     // climb motor
     public static final int backClimbMotor = 12;
-    public static final int frontMasterMotor = 10;
-    public static final int frontSlaveMotor = 11;
+    public static final int leftMotor = 10;
+    public static final int rightMotor = 11;
     public static final int climbMotionMotor = 13;
 
 

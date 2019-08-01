@@ -72,4 +72,19 @@ public class Judge extends Subsystem {
 
     SmartDashboard.putBoolean("high speed", highSpeedOn);
   }
+
+  public void hasBall(){
+    if (Robot.oi.motionStick.getRawButton(5)){
+      hasBall = true;
+    }
+    if (Robot.oi.motionStick.getRawButton(6)){
+      hasBall = false;
+    }
+    if(Robot.oi.motionStick.getRawButton(7)){
+      hasBall = false;
+    }
+    if(Robot.oi.motionStick.getRawButton(8)){
+      hasBall = false;
+    }
+  }
 }

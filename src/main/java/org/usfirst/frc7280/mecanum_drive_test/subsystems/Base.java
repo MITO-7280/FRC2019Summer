@@ -83,30 +83,20 @@ public class Base extends Subsystem {
         configVelocityPID();
 
         if(Robot.judge.highSpeedOn){
-            if (Robot.elevator.targetPosition > -10000){
+
                 frontLeftSpeed = (yValue - xValue - zValue / 1.3) * Constants.kBaseHighSpeed;
                 rearLeftSpeed = (yValue + xValue - zValue / 1.3) * Constants.kBaseHighSpeed;
                 frontRightSpeed = (yValue + xValue + zValue / 1.3) * Constants.kBaseHighSpeed;
                 rearRighttSpeed = (yValue - xValue + zValue / 1.3) * Constants.kBaseHighSpeed;
-            } else {
-                frontLeftSpeed = (yValue - xValue - zValue / 1.3) * Constants.kBaseHighSpeed / 2;
-                rearLeftSpeed = (yValue + xValue - zValue / 1.3) * Constants.kBaseHighSpeed / 2;
-                frontRightSpeed = (yValue + xValue + zValue / 1.3) * Constants.kBaseHighSpeed / 2;
-                rearRighttSpeed = (yValue - xValue + zValue / 1.3) * Constants.kBaseHighSpeed / 2;
-            }
+
         } else {
-            if (Robot.elevator.targetPosition > -10000){
                 frontLeftSpeed = (yValue - xValue - zValue / 1.3) * Constants.kBaseLowSpeed;
                 rearLeftSpeed = (yValue + xValue - zValue / 1.3) * Constants.kBaseLowSpeed;
                 frontRightSpeed = (yValue + xValue + zValue / 1.3) * Constants.kBaseLowSpeed;
                 rearRighttSpeed = (yValue - xValue + zValue / 1.3) * Constants.kBaseLowSpeed;
-            } else {
-                frontLeftSpeed = (yValue - xValue - zValue / 1.3) * Constants.kBaseLowSpeed / 2;
-                rearLeftSpeed = (yValue + xValue - zValue / 1.3) * Constants.kBaseLowSpeed / 2;
-                frontRightSpeed = (yValue + xValue + zValue / 1.3) * Constants.kBaseLowSpeed / 2;
-                rearRighttSpeed = (yValue - xValue + zValue / 1.3) * Constants.kBaseLowSpeed / 2;
+
             }
-        }
+        
         
         speedDrive();
 
@@ -284,10 +274,10 @@ public class Base extends Subsystem {
     }
 
     public void configVelocityPID(){
-        robotMap.setMotorPID(leftFrontMotor, 0.15, 0.1, 0, 0);
-        robotMap.setMotorPID(leftRearMotor, 0.197, 0.1, 0, 0);
-        robotMap.setMotorPID(rightFrontMotor, 0.15, 0.025, 0, 0);
-        robotMap.setMotorPID(rightRearMotor, 0.191, 0.2, 0, 0);
+        robotMap.setMotorPID(leftFrontMotor, 0, 0.2, 0, 1);
+        robotMap.setMotorPID(leftRearMotor, 0, 0.2, 0, 1);
+        robotMap.setMotorPID(rightFrontMotor, 0, 0.2, 0, 1);
+        robotMap.setMotorPID(rightRearMotor, 0, 0.2, 0, 1);
 
         leftFrontMotor.configClosedLoopPeakOutput(0, 1);
         leftRearMotor.configClosedLoopPeakOutput(0, 1);

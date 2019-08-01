@@ -31,11 +31,11 @@ public class ManualClimb extends Command {
   protected void execute() {
     SmartDashboard.putNumber("yValue", Robot.oi.climbStick.getY());
     if(Robot.judge.climbOk){
-      if(Robot.oi.climbStick.getY() < 0){
+      if(Robot.oi.climbStick.getRawButton(3)){
       Robot.climb.climbUp(Robot.oi.climbStick.getY());
       }else {
         SmartDashboard.putBoolean("y>0", true);
-        Robot.climb.climbDown(Robot.oi.climbStick.getY());
+        // Robot.climb.climbDown(Robot.oi.climbStick.getY());
       }
       } 
   }

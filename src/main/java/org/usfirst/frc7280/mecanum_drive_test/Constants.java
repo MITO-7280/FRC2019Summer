@@ -85,7 +85,7 @@ public class Constants {
     // climb PID values and height
     public static final double kClimbPeakOutput = 0.5;
     public static final double kClimbBackOutput = 0.9;
-    public static final int kClimbSecondLevel = 167000;
+    public static final int kClimbSecondLevel = 170000;
     public static final int kClimbFirstLevel = 61000;
     public static final int kRetrieveLevel = 0;
     public static final int climbSpeed = 2000;

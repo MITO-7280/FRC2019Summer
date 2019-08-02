@@ -269,15 +269,15 @@ public class Climb extends Subsystem {
       rightMotor.set(ControlMode.Position, targetPosition);
     }
     if(leftMotor.getSelectedSensorPosition()> targetPosition){
-      robotMap.setMotorPID(leftMotor, 0, 0.6, 0, 0);
-      leftMotor.set(ControlMode.Velocity, -4700);
+      robotMap.setMotorPID(leftMotor, 0.5, 0.6, 0, 0);
+      leftMotor.set(ControlMode.Velocity, -5500);
     }  else {
       robotMap.setMotorPID(rightMotor, 0, 0.02, 0, 0);
       leftMotor.set(ControlMode.Position, targetPosition);
     }
     if(backClimbMotor.getSelectedSensorPosition()> targetPosition){
-      robotMap.setMotorPID(backClimbMotor, 0, 0.5, 0, 0);
-      backClimbMotor.set(ControlMode.Velocity, -2500);
+      robotMap.setMotorPID(backClimbMotor, 0, 0.3, 0, 0);
+      backClimbMotor.set(ControlMode.Velocity, -1800);
     } else {
       robotMap.setMotorPID(backClimbMotor, 0, 0.02, 0, 0);
       backClimbMotor.set(ControlMode.Position, targetPosition);

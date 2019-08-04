@@ -84,16 +84,16 @@ public class Base extends Subsystem {
 
         if(Robot.judge.highSpeedOn){
 
-                frontLeftSpeed = (yValue - xValue - zValue / 1.3) * Constants.kBaseHighSpeed;
-                rearLeftSpeed = (yValue + xValue - zValue / 1.3) * Constants.kBaseHighSpeed;
-                frontRightSpeed = (yValue + xValue + zValue / 1.3) * Constants.kBaseHighSpeed;
-                rearRighttSpeed = (yValue - xValue + zValue / 1.3) * Constants.kBaseHighSpeed;
+                frontLeftSpeed = (yValue - xValue*1.2 - zValue / 1.3) * Constants.kBaseHighSpeed;
+                rearLeftSpeed = (yValue + xValue*1.2 - zValue / 1.3) * Constants.kBaseHighSpeed;
+                frontRightSpeed = (yValue + xValue*1.2 + zValue / 1.3) * Constants.kBaseHighSpeed;
+                rearRighttSpeed = (yValue - xValue*1.2 + zValue / 1.3) * Constants.kBaseHighSpeed;
 
         } else {
-                frontLeftSpeed = (yValue - xValue - zValue / 1.3) * Constants.kBaseLowSpeed;
-                rearLeftSpeed = (yValue + xValue - zValue / 1.3) * Constants.kBaseLowSpeed;
-                frontRightSpeed = (yValue + xValue + zValue / 1.3) * Constants.kBaseLowSpeed;
-                rearRighttSpeed = (yValue - xValue + zValue / 1.3) * Constants.kBaseLowSpeed;
+                frontLeftSpeed = (yValue - xValue*1.2 - zValue / 1.3) * Constants.kBaseLowSpeed;
+                rearLeftSpeed = (yValue + xValue*1.2 - zValue / 1.3) * Constants.kBaseLowSpeed;
+                frontRightSpeed = (yValue + xValue*1.2 + zValue / 1.3) * Constants.kBaseLowSpeed;
+                rearRighttSpeed = (yValue - xValue*1.2 + zValue / 1.3) * Constants.kBaseLowSpeed;
 
             }
         

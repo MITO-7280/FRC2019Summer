@@ -92,33 +92,35 @@ public class Elevator extends Subsystem {
     */
     targetPosition = _position;
     elevatorPosition = elevatorMaster.getSelectedSensorPosition(Constants.kSlotIdx);
-    if (targetPosition < -17000 && Robot.arm.lifted == false){
-      Robot.arm.lift();
-    } else {
-      if ( elevatorPosition < _position - 5000) { //lift up
-        if (elevatorPosition < Constants.midPause ){  //lift third part 
-          robotMap.setMotorPID(elevatorMaster, 0, 0.12, 0, 0);
-          elevatorMaster.set(ControlMode.Velocity, 8000);
-        } else {
-          robotMap.setMotorPID(elevatorMaster, 0, 0.18, 0, 0);
-          elevatorMaster.set(ControlMode.Velocity, 8000);
-        } 
-      }  else if (elevatorPosition > _position + 5000) { //down
-        robotMap.setMotorPID(elevatorMaster, 0, 0.1, 0, 0);
-        elevatorMaster.set(ControlMode.Velocity, -4500);
-      }  
-      else if (targetPosition -5000 < elevatorPosition && elevatorPosition < targetPosition - 500 ){
-        robotMap.setMotorPID(elevatorMaster, 0, 0.1, 0, 0);
-        elevatorMaster.set(ControlMode.Velocity, 1000);
-      } else if (targetPosition +5000 > elevatorPosition && elevatorPosition > targetPosition + 500){
-        robotMap.setMotorPID(elevatorMaster, 0, 0.1, 0, 0);
-        elevatorMaster.set(ControlMode.Velocity, -1000);
-      }
+    if ( elevatorPosition < _position - 5000) { //lift up
+      if (elevatorPosition < Constants.midPause ){  //lift third part 
+        robotMap.setMotorPID(elevatorMaster, 0, 0.12, 0, 0);
+        elevatorMaster.set(ControlMode.Velocity, 8000);
+      } 
       else {
-        robotMap.setMotorPID(elevatorMaster, 0, 0.01, 0, 0);
-        elevatorMaster.set(ControlMode.Position, _position);
-      }
+        robotMap.setMotorPID(elevatorMaster, 0, 0.18, 0, 0);
+        elevatorMaster.set(ControlMode.Velocity, 8000);
+      } 
+    }  
+    else if (elevatorPosition > _position + 5000) { //down
+      robotMap.setMotorPID(elevatorMaster, 0, 0.1, 0, 0);
+      elevatorMaster.set(ControlMode.Velocity, -4500);
+    }  
+    else if (targetPosition -5000 < elevatorPosition && elevatorPosition < targetPosition - 500 ){
+      robotMap.setMotorPID(elevatorMaster, 0, 0.14, 0, 0);
+      elevatorMaster.set(ControlMode.Velocity, 2000);
+    } 
+    else if (targetPosition +5000 > elevatorPosition && elevatorPosition > targetPosition + 500){
+      robotMap.setMotorPID(elevatorMaster, 0, 0.14, 0
+      , 0);
+      elevatorMaster.set(ControlMode.Velocity, -2000);
     }
+    else {
+      // robotMap.setMotorPID(elevatorMaster, 0, 0.0001, 0, 0);
+      // elevatorMaster.set(ControlMode.Position, _position);
+      elevatorMaster.set(ControlMode.PercentOutput, 0.1);
+    }
+    
 
     // if( Robot.judge.hasBall == true){
     //   Robot.intaker.take(0.3);

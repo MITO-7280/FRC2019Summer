@@ -113,6 +113,8 @@ public class OI {
 
         // asociate elevaor button to function 
         // liftZero.whenPressed(new LiftZero(Constants.kZeroLevel));
+
+
         liftZeroLevel.whenPressed(new Lift(Constants.kZeroLevel));
         liftFirstLevel.whenPressed(new Lift(Constants.kFirstLevel));
         liftSecondLevel.whenPressed(new Lift(Constants.kSecondLevel));
@@ -122,12 +124,16 @@ public class OI {
         liftSixthLevel.whenPressed(new Lift(Constants.kSixthLevel));
         grabBallLevel.whenPressed(new Lift(Constants.kGrabBall));
 
+        
+
 
         // manual move arm
          armDown = new JoystickButton(functionStick, 8);
          armLift = new JoystickButton(functionStick, 7);
          armLift.whenPressed(new ArmLift());
          armDown.whenPressed(new ArmDown());
+
+         
 
         // motion stick 
         // manually grab and shoot the ball, config button

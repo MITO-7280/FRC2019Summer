@@ -52,7 +52,7 @@ public class Arm extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new ManualArm());
+    // setDefaultCommand(new ManualArm());
     // modify needed check whether they will interrupt themselves
   }
 
@@ -80,12 +80,14 @@ public class Arm extends Subsystem {
       } else if (Math.abs(armMotor.getSelectedSensorPosition()) > (Constants.kLift - 3000)) {
         robotMap.setMotorPID(armMotor, 0, 0.5, 0, 0);
         armMotor.set(ControlMode.Velocity, 100);
-      } else if (Math.abs(armMotor.getSelectedSensorPosition()) > 28000) {
+        // armMotor.set(ControlMode.PercentOutput, 0.1);
+      } else if (Math.abs(armMotor.getSelectedSensorPosition()) > Constants.kMiddle) {
         robotMap.setMotorPID(armMotor, 0, 0.3, 0, 0);
-        armMotor.set(ControlMode.Velocity, 4000);
+        armMotor.set(ControlMode.Velocity, 3000);
+        // armMotor.set(ControlMode.PercentOutput, 0.2);
       } else {
         robotMap.setMotorPID(armMotor, 0, 0.2, 0, 0);
-        armMotor.set(ControlMode.Velocity, 40000);
+        armMotor.set(ControlMode.Velocity, 10000);
       }
     }
 
@@ -108,13 +110,13 @@ public class Arm extends Subsystem {
     armMotor.configClosedLoopPeakOutput(Constants.kSlotIdx, 0.45, Constants.kTimeoutMs);
 
     if (lifted) {
-      if (Math.abs(armMotor.getSelectedSensorPosition()) > 28000) {
+      if (Math.abs(armMotor.getSelectedSensorPosition()) > 39000) {
         robotMap.setMotorPID(armMotor, 0, 0.2, 0, 0);
         armMotor.set(ControlMode.Velocity, -3000);
-      } else if (armMotor.getSelectedSensorPosition() > 2000) {
+      } else if (armMotor.getSelectedSensorPosition() > 13000) {
         robotMap.setMotorPID(armMotor, 0, 0.02, 0, 0);
         armMotor.set(ControlMode.PercentOutput, 0);
-      } else if (armMotor.getSelectedSensorPosition() > 700) {
+      } else if (armMotor.getSelectedSensorPosition() > 11700) {
         robotMap.setMotorPID(armMotor, 0, 0.2, 0, 0);
         armMotor.set(ControlMode.Velocity, -100);
       } else {
@@ -122,7 +124,7 @@ public class Arm extends Subsystem {
       }
     } else {
       robotMap.setMotorPID(armMotor, 0, 0.3, 0, 0);
-      armMotor.set(ControlMode.Position, 0);
+      armMotor.set(ControlMode.Position, 11000);
     }
 
     armPosition = armMotor.getSelectedSensorPosition();

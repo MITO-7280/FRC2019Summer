@@ -1,5 +1,6 @@
 package org.usfirst.frc7280.mecanum_drive_test;
 
+
 public class Constants {
 
     public static final int kTimeoutMs = 30;
@@ -23,8 +24,8 @@ public class Constants {
 
 
     // Base speed 
-    public static final int kBaseHighSpeed = 7000;
-    public static final int kBaseLowSpeed = 3000;
+    public static final int kBaseHighSpeed = 11000;
+    public static final int kBaseLowSpeed = 5000;
 
     // Elevator PID values 
     public static final double kElevatorP = 0.04;
@@ -48,21 +49,22 @@ public class Constants {
     public static final double kElevatorHigherPeakOutput = 0.4;
 
     // Elevator height values
-    public static final int kZeroLevel = 0; //zero arm down
-    public static final int kFirstLevel = 8700; // rocket one pannel arm down
-    public static final int kSecondLevel = 26720; //rocket one ball arm down
-    public static final int kThirdLevel = 1731; //rocket two pannel
-    public static final int kFourthLevel = 15250; //rocket two ball
-    public static final int kFifthLevel = 71420; // rocket three ball
-    public static final int kSixthLevel = 61600; //rocket three pannel
-    public static final int kGrabBall = -11000; // grab ball
+    public static final int kZeroLevel = 0+9540; //zero arm down
+    public static final int kFirstLevel = 8700+9540; // rocket one pannel arm down
+    public static final int kSecondLevel = 26720+9540; //rocket one ball arm down
+    public static final int kThirdLevel = 1731+9540; //rocket two pannel
+    public static final int kFourthLevel = 15250+9540; //rocket two ball
+    public static final int kFifthLevel = 71420+9540; // rocket three ball
+    public static final int kSixthLevel = 61600+9540; //rocket three pannel
+    public static final int kGrabBall = -11000+9540; // grab ball
+    
+    public static final int midPause = 500+9540;
+
 
     // Elevator current limit values
     public static final int kContinueCurrentLimit = 28;
     public static final int kPeakCurrentLimit = 30;
     public static final int kpeakCurrentDuration = 10;
-
-    public static final int midPause = 500;
 
 
     // Intaker motor Speed values
@@ -78,9 +80,9 @@ public class Constants {
     public static final double kArmPeakOutput = 1;
     
     // Arm lift values
-    public static final int kDown = 8000;
-    public static final int kLift = 42000;
-
+    public static final int kDown = 18000;
+    public static final int kLift = 54600;
+    public static final int kMiddle = 39000;
 
     // climb PID values and height
     public static final double kClimbPeakOutput = 0.5;

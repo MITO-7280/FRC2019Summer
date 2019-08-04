@@ -261,6 +261,7 @@ public class Climb extends Subsystem {
   public void climbMethod1(int _position){
     int targetPosition = _position;
     double rightSpeed = rightMotor.getSelectedSensorVelocity();
+    // climbMotionMotor.set(ControlMode.PercentOutput, -0.05);
     if(rightMotor.getSelectedSensorPosition()> targetPosition){
       robotMap.setMotorPID(rightMotor, 0, 0.5, 0, 0);
       rightMotor.set(ControlMode.Velocity, -3700);
@@ -277,7 +278,7 @@ public class Climb extends Subsystem {
     }
     if(backClimbMotor.getSelectedSensorPosition()> targetPosition){
       robotMap.setMotorPID(backClimbMotor, 0, 0.3, 0, 0);
-      backClimbMotor.set(ControlMode.Velocity, -1800);
+      backClimbMotor.set(ControlMode.Velocity, -2000);
     } else {
       robotMap.setMotorPID(backClimbMotor, 0, 0.02, 0, 0);
       backClimbMotor.set(ControlMode.Position, targetPosition);

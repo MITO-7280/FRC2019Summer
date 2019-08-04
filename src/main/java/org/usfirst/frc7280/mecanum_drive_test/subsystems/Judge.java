@@ -25,10 +25,13 @@ public class Judge extends Subsystem {
   public boolean hasBall = false;
   public boolean atButtom = true;
   public int visionDistence = 1000;
-  private DigitalInput elevatorSensor = new DigitalInput(1);
+  private DigitalInput calibrateSensor = new DigitalInput(5);
   public int climbLevel;
   public boolean climbOk;
   public boolean highSpeedOn = true;
+  public boolean isCalibrated = false;
+
+
 
   @Override
   public void initDefaultCommand() {
@@ -46,9 +49,13 @@ public class Judge extends Subsystem {
     SmartDashboard.putBoolean("Manual Mode", manualModeOn);
   }
 
-    public void detecting(){
-      atButtom = elevatorSensor.get();
+  public void detecting(){
+    isCalibrated =! calibrateSensor.get();
+    SmartDashboard.putBoolean("isCalibrated", isCalibrated);
+    if (isCalibrated){
+      Robot.elevator.elevatorMaster.setSelectedSensorPosition(1040);
     }
+  }
 
   public void climbStageJudge(){
     if (Robot.oi.climbStick.getRawButton(7)){
